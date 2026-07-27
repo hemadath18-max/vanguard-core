@@ -1,72 +1,69 @@
 // ============================================================================
-//   ASTROMIND AI - ENTERPRISE BACKEND GATEWAY INFRASTRUCTURE
+//   ASTROMIND AI - SCAM SHIELD FIREWALL INFRASTRUCTURE
 //   REPOS: VANGUARD-CORE / INTEGRITY-ENGINE
 // ============================================================================
 
 const express = require('express');
-const crypto = require('crypto');
 const app = express();
-
-// Enable secure parsing of high-density JSON data payloads
 app.use(express.json());
 
-// Simulated high-security cloud memory storage cluster
-const secureIdentityDatabase = new Map();
+// A real, high-speed database memory cache of known scam indicators
+// In a massive app, this connects to a live database of thousands of blocked numbers
+const knownScamDatabase = {
+    blockedNumbers: ['+18005550199', '+919999999999', '+442079460192'],
+    phishingDomains: ['verify-your-bank-login.com', 'secure-net-scam.xyz', 'free-giftcard-claim.info']
+};
 
 /**
- * @route   POST /api/v1/auth/screening
- * @desc    Secure entry point to ingest and authorize enterprise client requests
- * @access  Protected (Requires client verification token)
+ * @route   POST /api/v1/shield/analyze
+ * @desc    Real-time endpoint used by the mobile app to verify if an incoming item is a scam
  */
-app.post('/api/v1/auth/screening', (req, res) => {
-    const { clientAccessId, candidateName, candidateEmail, screeningType } = req.body;
+app.post('/api/v1/shield/analyze', (req, res) => {
+    const { incomingPhoneNumber, incomingLink, userDeviceToken } = req.body;
 
-    // SYSTEM GUARDRAILS: Absolute verification of critical payload components
-    if (!clientAccessId || !candidateName || !candidateEmail) {
-        console.error(`[SYS ERROR] Malformed ingestion attempt blocked. Incomplete fields.`);
-        return res.status(400).json({
-            status: "REJECTED",
-            errorCode: "ERR_MALFORMED_PAYLOAD",
-            message: "Enterprise System Ingestion Refused. Missing mandatory fields."
-        });
+    // Guardrail: Ensure the mobile app sent data to check
+    if (!userDeviceToken) {
+        return res.status(400).json({ status: "ERROR", message: "Unauthorized Device Request." });
     }
 
-    // Cryptographic UUID generation for un-trackable security scanning tokens
-    const operationalScanToken = crypto.randomUUID();
+    let threatDetected = false;
+    let threatType = "CLEAN";
+    let safetyScore = 100;
 
-    // Construct the un-alterable corporate data registry object
-    const systemComplianceRecord = {
-        scanId: operationalScanToken,
-        clientCompanyId: clientAccessId,
-        subjectName: candidateName,
-        subjectEmail: candidateEmail,
-        engineProfile: screeningType || "Standard Institutional Review",
-        timestampUTC: new Date().toISOString(),
-        systemStatus: "QUEUED_FOR_EXTRACTION",
-        analyticalVerdict: "PENDING_REGISTRY_RESULTS"
-    };
+    // 1. Check if the phone number is a reported scammer
+    if (incomingPhoneNumber && knownScamDatabase.blockedNumbers.includes(incomingPhoneNumber)) {
+        threatDetected = true;
+        threatType = "KNOWN_SCAM_CALLER";
+        safetyScore = 0;
+    }
 
-    // Commit tracking object securely directly into local system state
-    secureIdentityDatabase.set(operationalScanToken, systemComplianceRecord);
+    // 2. Check if the link inside the SMS is a phishing scam
+    if (incomingLink && knownScamDatabase.phishingDomains.some(domain => incomingLink.includes(domain))) {
+        threatDetected = true;
+        threatType = "PHISHING_MALWARE_LINK";
+        safetyScore = 0;
+    }
 
-    console.log(`[SYS CO-FOUNDER SUCCESS] Secure record logged for tracking ID: ${operationalScanToken}`);
+    // Log the threat block to our admin panel console
+    if (threatDetected) {
+        console.log(`[ALERT] AstroMindAI blocked a ${threatType} threat for device: ${userDeviceToken}`);
+    }
 
-    // Return immediate high-performance operational callback confirmation
-    return res.status(202).json({
-        status: "ACCEPTED",
-        message: "Data pipeline initialized completely. Verification active.",
-        systemToken: operationalScanToken,
-        nextExecutionNode: "CONNECTING_TO_GLOBAL_REGISTRIES"
+    // Send the immediate blocking command back to the user's mobile phone app
+    return res.status(200).json({
+        status: "PROCESSED",
+        threatDetected: threatDetected,
+        threatClassification: threatType,
+        riskScore: 100 - safetyScore,
+        actionRequired: threatDetected ? "BLOCK_AND_NOTIFY_USER" : "ALLOW_TRAFFIC"
     });
 });
 
-// Configure system channels to monitor infrastructure port
-const INFRASTRUCTURE_PORT = process.env.PORT || 3000;
-app.listen(INFRASTRUCTURE_PORT, () => {
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
     console.log(`================================================================`);
-    console.log(`  ASTROMIND AI SYSTEMS ENGINE ACTIVATED SUCCESSFULLY             `);
-    console.log(`  SECURE NETWORKING CHANNELS ONLINE ON SERVICE PORT: ${INFRASTRUCTURE_PORT}      `);
-    console.log(`  READY FOR HIGH-TICKET CORPORATE INTEGRITY DISRUPTION           `);
+    console.log(`  ASTROMIND AI - SCAM SHIELD FIREWALL ACTIVATED                  `);
+    console.log(`  MONITORING AND DESTROYING SCAMMER THREATS ON PORT: ${PORT}       `);
     console.log(`================================================================`);
 });
-  
+    
