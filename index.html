@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroMindAI Scam Shield</title>
+    <style>
+        :root {
+            --bg-dark: #0a0c10;
+            --card-dark: #12161f;
+            --neon-blue: #00f0ff;
+            --neon-green: #39ff14;
+            --text-main: #e1e7ed;
+            --border-glow: #1f293d;
+        }
+        body {
+            margin: 0; padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Courier New', Courier, monospace;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh;
+        }
+        .app-screen {
+            width: 92vw; max-width: 400px;
+            background: var(--card-dark);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px; padding: 20px;
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
+            box-sizing: border-box;
+        }
+        .brand-header { text-align: center; margin-bottom: 25px; }
+        .brand-name { font-size: 24px; font-weight: bold; color: var(--neon-blue); letter-spacing: 2px; }
+        .brand-sub { font-size: 11px; color: #7a8c9e; margin-top: 5px; }
+        
+        .shield-status {
+            text-align: center; margin: 20px 0; padding: 20px;
+            border-radius: 50%; width: 140px; height: 140px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            margin-left: auto; margin-right: auto;
+            border: 3px solid var(--neon-green);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
+            animation: pulse 2s infinite;
+        }
+        .shield-icon { font-size: 40px; margin-bottom: 5px; }
+        .status-text { font-size: 14px; font-weight: bold; color: var(--neon-green); }
+
+        .stats-grid { display: flex; gap: 10px; margin-bottom: 25px; }
+        .stat-card {
+            flex: 1; background: #0f131a; border: 1px solid var(--border-glow);
+            padding: 12px; border-radius: 8px; text-align: center;
+        }
+        .stat-val { font-size: 20px; font-weight: bold; color: var(--neon-blue); }
+        .stat-lbl { font-size: 10px; color: #7a8c9e; margin-top: 4px; }
+
+        .toggle-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px; background: #0f131a; border-radius: 8px;
+            margin-bottom: 10px; border-left: 3px solid var(--neon-blue);
+        }
+        .toggle-lbl { font-size: 13px; font-weight: bold; }
+        .toggle-btn {
+            background: var(--neon-blue); border: none; padding: 6px 12px;
+            border-radius: 4px; color: #0a0c10; font-weight: bold; font-size: 11px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(57, 255, 20, 0.2); }
+            50% { transform: scale(1.03); box-shadow: 0 0 30px rgba(57, 255, 20, 0.4); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-screen">
+    <div class="brand-header">
+        <div class="brand-name">AstroMindAI</div>
+        <div class="brand-sub">SCAM SHIELD USER INTERFACE v1.0</div>
+    </div>
+
+    <div class="shield-status">
+        <div class="shield-icon">🛡️</div>
+        <div class="status-text">SECURE</div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-val" id="scam-count">1,482</div>
+            <div class="stat-lbl">SCAMS BLOCKED</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val">0</div>
+            <div class="stat-lbl">ACTIVE THREATS</div>
+        </div>
+    </div>
+
+    <div class="toggle-row">
+        <div class="toggle-lbl">SMS Phishing Filter</div>
+        <button class="toggle-btn" onclick="triggerTest()">ACTIVE</button>
+    </div>
+    <div class="toggle-row">
+        <div class="toggle-lbl">Spoof Call Detector</div>
+        <button class="toggle-btn">ACTIVE</button>
+    </div>
+    <div class="toggle-row">
+        <div class="toggle-lbl">Malicious DNS Shield</div>
+        <button class="toggle-btn">ACTIVE</button>
+    </div>
+</div>
+
+<script>
+    function triggerTest() {
+        const counter = document.getElementById('scam-count');
+        let current = parseInt(counter.innerText.replace(',', ''));
+        counter.innerText = (current + 1).toLocaleString();
+        alert("[AstroMindAI Alert] Real-time phishing attempt intercepted and neutralized successfully!");
+    }
+</script>
+
+</body>
+  </html>
+                                                     
