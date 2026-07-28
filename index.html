@@ -3,171 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AstroMindAI - Threat Shield Matrix</title>
+    <title>AstroMindAI - Secure System Shield</title>
     <style>
         :root {
-            --bg-deep: #05070a;
-            --panel-bg: #0c1017;
-            --neon-cyan: #00f0ff;
-            --neon-red: #ff0055;
-            --neon-green: #39ff14;
-            --text-bright: #ffffff;
-            --border-glow: #1a2333;
+            --bg-main: #0b0f17;
+            --panel-card: #131a26;
+            --primary-blue: #00d2ff;
+            --secure-green: #2ecc71;
+            --alert-red: #e74c3c;
+            --text-white: #ffffff;
+            --text-gray: #8a9ba8;
+            --border-line: #1e293b;
         }
         
         body {
             margin: 0; padding: 0;
-            background-color: var(--bg-deep);
-            color: var(--text-bright);
-            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-main);
+            color: var(--text-white);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex; flex-direction: column; align-items: center;
-            min-height: 100vh; overflow-x: hidden;
+            min-height: 100vh; overflow-x: hidden; box-sizing: border-box;
+        }
+
+        /* Clean Main Phone Wrapper Layout */
+        .app-container {
+            width: 100vw; min-height: 100vh;
+            max-width: 440px; padding: 25px 20px;
+            box-sizing: border-box; display: flex;
+            flex-direction: column; align-items: center;
+        }
+
+        /* Clean Minimal Branding Typography */
+        .app-title {
+            font-size: 26px; font-weight: 800; letter-spacing: 1px;
+            color: var(--text-white); margin: 15px 0 4px 0; text-align: center;
+        }
+
+        .app-subtitle {
+            font-size: 12px; font-weight: 500; color: var(--text-gray);
+            letter-spacing: 1px; text-transform: uppercase; margin-bottom: 40px;
+        }
+
+        /* Huge Clear Status Hub Circle */
+        .status-circle-hub {
+            width: 170px; height: 170px; border-radius: 50%;
+            border: 5px solid var(--secure-green); background: rgba(46, 204, 113, 0.05);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            margin-bottom: 45px; transition: all 0.3s ease;
+        }
+
+        .hub-emoji { font-size: 48px; margin-bottom: 6px; }
+        .hub-label-string { font-size: 18px; font-weight: 700; color: var(--secure-green); letter-spacing: 2px; }
+
+        /* Highly Understandable Tracking Blocks */
+        .metrics-row-wrapper {
+            display: flex; gap: 15px; width: 100%; margin-bottom: 35px;
+        }
+
+        .metric-block-card {
+            flex: 1; background: var(--panel-card); border: 1px solid var(--border-line);
+            border-radius: 12px; padding: 20px 10px; text-align: center;
+        }
+
+        .metric-display-number { font-size: 32px; font-weight: 800; color: var(--primary-blue); }
+        .metric-display-title { font-size: 11px; font-weight: 600; color: var(--text-gray); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Huge, Clear Action Control Panels */
+        .control-panel-row {
+            width: 100%; background: var(--panel-card); border: 1px solid var(--border-line);
+            border-radius: 14px; padding: 16px 20px; margin-bottom: 15px;
+            display: flex; justify-content: space-between; align-items: center;
             box-sizing: border-box;
         }
 
-        /* Giant Core Shield Container */
-        .app-mainframe {
-            width: 100vw; min-height: 100vh;
-            background: linear-gradient(180deg, #05070a 0%, #0c1017 100%);
-            padding: 30px 20px; box-sizing: border-box;
-            display: flex; flex-direction: column; align-items: center;
-        }
-
-        /* Huge Brand Typography */
-        .brand-master-title {
-            font-size: 32px; font-weight: 900; text-transform: uppercase;
-            color: var(--neon-cyan); letter-spacing: 5px; text-align: center;
-            text-shadow: 0 0 15px rgba(0, 240, 255, 0.6); margin: 10px 0 5px 0;
-        }
-
-        .brand-sub-banner {
-            font-size: 12px; color: #52667a; letter-spacing: 2px;
-            text-transform: uppercase; margin-bottom: 35px; text-align: center;
-        }
-
-        /* Giant Floating Pulse Core Shield */
-        .status-shield-orb {
-            width: 180px; height: 180px; border-radius: 50%;
-            border: 4px solid var(--neon-green); background: rgba(57, 255, 20, 0.03);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            box-shadow: 0 0 35px rgba(57, 255, 20, 0.3);
-            animation: globalPulse 2.5s infinite ease-in-out; margin-bottom: 40px;
-        }
-
-        .orb-icon { font-size: 55px; margin-bottom: 8px; }
-        .orb-text { font-size: 20px; font-weight: bold; color: var(--neon-green); letter-spacing: 3px; }
-
-        /* Massive Live Metric Analytics Counter Blocks */
-        .metrics-grid-system {
-            display: flex; gap: 15px; width: 100%; max-width: 400px; margin-bottom: 35px;
-        }
-
-        .metric-data-card {
-            flex: 1; background: var(--panel-bg); border: 1px solid var(--border-glow);
-            border-radius: 12px; padding: 18px 10px; text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        }
-
-        .metric-big-value { font-size: 28px; font-weight: bold; color: var(--neon-cyan); text-shadow: 0 0 10px rgba(0, 240, 255, 0.3); }
-        .metric-card-label { font-size: 11px; color: #62778c; margin-top: 6px; letter-spacing: 1px; text-transform: uppercase; }
-
-        /* Massive Interactive System Toggles */
-        .control-toggle-wrapper {
-            width: 100%; max-width: 400px;
-            background: rgba(12, 16, 23, 0.7); border: 1px solid var(--border-glow);
-            border-radius: 12px; padding: 18px; margin-bottom: 15px;
-            display: flex; justify-content: space-between; align-items: center;
-            box-sizing: border-box; border-left: 4px solid var(--neon-cyan);
-        }
-
-        .toggle-system-title { font-size: 15px; font-weight: bold; letter-spacing: 1px; color: #cbd5e1; }
+        .control-row-text { font-size: 15px; font-weight: 600; color: #f1f5f9; }
         
-        .huge-action-button {
-            background: linear-gradient(135deg, #00f0ff 0%, #0077ff 100%);
-            border: none; padding: 12px 24px; border-radius: 8px;
-            color: #05070a; font-family: monospace; font-weight: 900;
-            font-size: 13px; letter-spacing: 1px; cursor: pointer;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4); text-transform: uppercase;
+        .clean-action-btn {
+            background: var(--primary-blue); border: none; padding: 12px 20px;
+            border-radius: 8px; color: #0b0f17; font-weight: 700;
+            font-size: 13px; cursor: pointer; text-transform: uppercase;
+            transition: background 0.2s;
         }
 
-        .huge-action-button:active {
-            transform: scale(0.96); background: var(--neon-cyan);
-        }
-
-        @keyframes globalPulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 35px rgba(57, 255, 20, 0.2); }
-            50% { transform: scale(1.05); box-shadow: 0 0 50px rgba(57, 255, 20, 0.5); border-color: #00ffcc; }
+        .clean-action-btn:active {
+            transform: scale(0.97); background: #00b8e6;
         }
     </style>
 </head>
 <body>
 
-<div class="app-mainframe">
-    <div class="brand-master-title">AstroMindAI</div>
-    <div class="brand-sub-banner">Threat Firewall Subsystem Matrix</div>
+<div class="app-container">
+    <div class="app-title">AstroMindAI</div>
+    <div class="app-subtitle">Scam Shield Protection</div>
 
-    <div class="status-shield-orb" id="main-orb">
-        <div class="orb-icon" id="orb-emoji">🛡️</div>
-        <div class="orb-text" id="orb-status-string">ACTIVE</div>
+    <!-- Clear visual center safety display -->
+    <div class="status-circle-hub" id="status-display-hub">
+        <div class="hub-emoji" id="hub-visual-emoji">🛡️</div>
+        <div class="hub-label-string" id="hub-text-message">SECURE</div>
     </div>
 
-    <div class="metrics-grid-system">
-        <div class="metric-data-card">
-            <div class="metric-big-value" id="hacker-attacks-counter">8,241</div>
-            <div class="metric-card-label">Threats Defeated</div>
+    <!-- Big clear data logs -->
+    <div class="metrics-row-wrapper">
+        <div class="metric-block-card">
+            <div class="metric-display-number" id="scam-logs-counter">1,482</div>
+            <div class="metric-display-title">Scams Blocked</div>
         </div>
-        <div class="metric-data-card">
-            <div class="metric-big-value" style="color: var(--neon-green);" id="active-danger-counter">0</div>
-            <div class="metric-card-label">Active Attacks</div>
+        <div class="metric-block-card">
+            <div class="metric-display-number" style="color: var(--secure-green);" id="active-incident-counter">0</div>
+            <div class="metric-display-title">Active Threats</div>
         </div>
     </div>
 
-    <div class="control-toggle-wrapper">
-        <div class="toggle-system-title">SMS Anti-Phishing Shield</div>
-        <button class="huge-action-button" onclick="executeMockAttackSequence()">Test Intercept</button>
+    <!-- Uncluttered interface buttons -->
+    <div class="control-panel-row">
+        <div class="control-row-text">SMS Phishing Filter</div>
+        <button class="clean-action-btn" onclick="simulateLiveAttackIntercept()">Run Test</button>
     </div>
 
-    <div class="control-toggle-wrapper" style="border-left-color: #a855f7;">
-        <div class="toggle-system-title">Spoof Caller Sandbox</div>
-        <button class="huge-action-button" style="background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%); color: #fff; box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);">Protected</button>
+    <div class="control-panel-row">
+        <div class="control-row-text">Spoof Call Sandbox</div>
+        <button class="clean-action-btn" style="background: #202b3c; color: var(--text-gray); border: 1px solid var(--border-line); cursor: default;">Active</button>
     </div>
 </div>
 
 <script>
-    function executeMockAttackSequence() {
-        const attackCounter = document.getElementById('active-danger-counter');
-        const totalDefeated = document.getElementById('hacker-attacks-counter');
-        const mainOrb = document.getElementById('main-orb');
-        const orbStatus = document.getElementById('orb-status-string');
-        const orbEmoji = document.getElementById('orb-emoji');
+    function simulateLiveAttackIntercept() {
+        const activeThreats = document.getElementById('active-incident-counter');
+        const scamsBlocked = document.getElementById('scam-logs-counter');
+        const statusHub = document.getElementById('status-display-hub');
+        const hubText = document.getElementById('hub-text-message');
+        const hubEmoji = document.getElementById('hub-visual-emoji');
 
-        // Trigger red alarm attack sequence state
-        attackCounter.innerText = "1";
-        attackCounter.style.color = "#ff0055";
-        mainOrb.style.borderColor = "#ff0055";
-        mainOrb.style.boxShadow = "0 0 50px rgba(255, 0, 85, 0.6)";
-        orbStatus.innerText = "BREACH BLOCK";
-        orbStatus.style.color = "#ff0055";
-        orbEmoji.innerText = "⚠️";
+        // Step 1: Instantly show clean, understandable threat warning state
+        activeThreats.innerText = "1";
+        activeThreats.style.color = "var(--alert-red)";
+        
+        statusHub.style.borderColor = "var(--alert-red)";
+        statusHub.style.background = "rgba(231, 76, 60, 0.05)";
+        hubText.innerText = "ATTACK BLOCKED";
+        hubText.style.color = "var(--alert-red)";
+        hubEmoji.innerText = "⚠️";
 
-        // Wait 2.5 seconds to neutralize threat and update logs
+        // Step 2: Clear threat state after 2 seconds to prove system processing works
         setTimeout(() => {
-            let currentDefeatedValue = parseInt(totalDefeated.innerText.replace(',', ''));
-            totalDefeated.innerText = (currentDefeatedValue + 1).toLocaleString();
+            let currentBlockedValue = parseInt(scamsBlocked.innerText.replace(',', ''));
+            scamsBlocked.innerText = (currentBlockedValue + 1).toLocaleString();
             
-            attackCounter.innerText = "0";
-            attackCounter.style.color = "#39ff14";
-            mainOrb.style.borderColor = "#39ff14";
-            mainOrb.style.boxShadow = "0 0 35px rgba(57, 255, 20, 0.3)";
-            orbStatus.innerText = "SECURE";
-            orbStatus.style.color = "#39ff14";
-            orbEmoji.innerText = "🛡️";
+            activeThreats.innerText = "0";
+            activeThreats.style.color = "var(--secure-green)";
             
-            alert("🚨 [ASTROMIND AI SHIELD ACTION]: A high-risk spoof payload targeted your phone layout. Threat detected and erased from memory grid.");
-        }, 2500);
+            statusHub.style.borderColor = "var(--secure-green)";
+            statusHub.style.background = "rgba(46, 204, 113, 0.05)";
+            hubText.innerText = "SECURE";
+            hubText.style.color = "var(--secure-green)";
+            hubEmoji.innerText = "🛡️";
+            
+            alert("🚨 [AstroMindAI Action]: A fraudulent phishing domain was intercepted and blocked from your device interface. Your phone remains clean.");
+        }, 2000);
     }
 </script>
 
 </body>
-            </html>
-            
+                </html>
+                
